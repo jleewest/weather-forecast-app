@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Weather</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app">
+        <form class="search-form" id="search-form">
+          <div class="row">
+            <div class="col-6">
+              <input
+                type="search"
+                placeholder="Type a city.."
+                autofocus="on"
+                autocomplete="off"
+                id="city-input"
+                class="form-control shadow-sm"
+              />
+            </div>
+            <div class="col-3">
+              <input
+                type="submit"
+                value="Search"
+                class="form-control btn btn-primary shadow-sm"
+              />
+            </div>
+            <div class="col-3">
+              <button>Current</button>
+            </div>
+          </div>
+        </form>
+        <div class="inner-container">
+          <h1 id="location"></h1>
+          <h2>Date Time</h2>
+          <div class="current-icon">
+            ⛅<span id="current-temp"> </span>
+            <span class="temp-unit">
+              <a href="#" id="celsius">°C</a> |
+              <a href="#" id="fahrenheit">°F</a>
+            </span>
+          </div>
+          <div class="row">
+            <div class="col-6"></div>
+            <div class="current-description col-6" id="dest">Overcast</div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="current-details row">
+              <div class="col-1"></div>
+              <div class="col-3" id="high-temp">74°</div>
+              <div class="col-3" id="wind-speed">2pmh</div>
+              <div class="col-5">7:32AM</div>
+              <div class="col-1"></div>
+              <div class="col-3"><strong>High</strong></div>
+              <div class="col-3"><strong>Wind</strong></div>
+              <div class="col-5"><strong>Sunrise</strong></div>
+              <br />
+              <br />
+              <div class="col-1"></div>
+              <div class="col-3" id="low-temp">53°</div>
+              <div class="col-3">0%</div>
+              <div class="col-5">6:53PM</div>
+              <div class="col-1"></div>
+              <div class="col-3"><strong>Low</strong></div>
+              <div class="col-3"><strong>Rain</strong></div>
+              <div class="col-5"><strong>Sunset</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>Coded by Jenna Westendorf</footer>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>

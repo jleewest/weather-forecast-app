@@ -37,15 +37,19 @@ h2 {
   font-size: 80px;
   text-align: center;
 }
+
 a,
 .temp-unit {
-  color: #474747;
   font-size: 20px;
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
+
+.temp-unit .active {
+  color: #474747;
+  cursor: default;
+  font-size: 26px;
 }
+
 .current-description {
   font-size: 14px;
   padding: 20px;

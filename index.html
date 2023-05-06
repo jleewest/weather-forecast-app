@@ -44,12 +44,19 @@
         <div class="inner-container">
           <h1 id="location"></h1>
           <h2>Date Time</h2>
-          <div class="current-icon">
-            ⛅<span id="current-temp"> </span>
-            <span class="temp-unit">
-              <a href="#" id="celsius">°C</a> |
-              <a href="#" id="fahrenheit">°F</a>
-            </span>
+          <div class="current-weather">
+            <div class="current-icon">
+              <img
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png"
+                alt="cloudy"
+                id="icon"
+              />
+              <span id="current-temp"> </span>
+              <span class="temp-unit">
+                <a href="#" id="celsius" class="active">°C</a> |
+                <a href="#" id="fahrenheit">°F</a>
+              </span>
+            </div>
           </div>
           <div class="row">
             <div class="col-6"></div>

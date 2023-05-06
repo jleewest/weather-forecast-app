@@ -24,24 +24,55 @@ function formatDate() {
 formatDate();
 
 function showLocationTemperature(response) {
-  document.querySelector("#location").innerHTML = response.data.name;
-  document.querySelector("#current-temp").innerHTML = Math.round(
-    response.data.main.temp
-  );
-  document.querySelector("#dest").innerHTML = response.data.weather[0].main;
+  let currentTemperature = document.querySelector("#current-temp");
+  let location = document.querySelector("#location");
+  let description = document.querySelector("#dest");
   let windSpeed = Math.round(response.data.wind.speed);
-  document.querySelector("#wind-speed").innerHTML = `${windSpeed}mph`;
-  document.querySelector("#high-temp").innerHTML = Math.round(
-    response.data.main.temp_max
+  let selectWind = document.querySelector("#wind-speed");
+  let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.temperature.current;
+
+  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+  location.innerHTML = response.data.city;
+  description.innerHTML = response.data.condition.description;
+  selectWind.innerHTML = `${windSpeed}mph`;
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  document.querySelector("#low-temp").innerHTML = Math.round(
-    response.data.main.temp_min
+  // document.querySelector("#high-temp").innerHTML = Math.round(
+  //   response.data.main.temp_max
+  // );
+  // document.querySelector("#low-temp").innerHTML = Math.round(
+  //   response.data.main.temp_min
+  // );
+}
+
+function showCurrentTemperature(response) {
+  let city = response.data.city;
+  let currentTemperature = document.querySelector("#current-temp");
+  let location = document.querySelector("#location");
+  let description = document.querySelector("#dest");
+  let windSpeed = Math.round(response.data.wind.speed);
+  let selectWind = document.querySelector("#wind-speed");
+  let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.temperature.current;
+
+  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+  location.innerHTML = `In ${city}, it is currently`;
+  description.innerHTML = response.data.condition.description;
+  selectWind.innerHTML = `${windSpeed}mph`;
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
 }
 
 function searchCity(city) {
-  let apiKey = "d2c69b988ab715940fcd9349d5e8f8ab";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "1adc8btb0637f4ff3663a3o5a9930eea";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showLocationTemperature);
 }
 function handleSubmit(event) {
@@ -50,43 +81,45 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", handleSubmit);
-
-function temperatureCelsius(event) {
+function displayTemperatureCelsius(event) {
   event.preventDefault();
   let celsius = document.querySelector("#current-temp");
-  celsius.innerHTML = Math.round(((celsius.innerHTML - 32) * 5) / 9);
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  celsius.innerHTML = Math.round(celsiusTemperature);
 }
-let changeToCelsius = document.querySelector("#celsius");
-changeToCelsius.addEventListener("click", temperatureCelsius);
 
-function temperatureFahrenheit(event) {
+function displayTemperatureFahrenheit(event) {
   event.preventDefault();
   let fahrenheit = document.querySelector("#current-temp");
-  fahrenheit.innerHTML = Math.round((fahrenheit.innerHTML * 9) / 5 + 32);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  fahrenheit.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
 }
-let changeToFahrenheit = document.querySelector("#fahrenheit");
-changeToFahrenheit.addEventListener("click", temperatureFahrenheit);
 
-function showCurrentTemperature(response) {
-  let location = document.querySelector("#location");
-  location.innerHTML = `It is currently`;
-  let temperature = Math.round(response.data.main.temp);
-  let currentTemp = document.querySelector("#current-temp");
-  currentTemp.innerHTML = `${temperature}`;
-}
 function getPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let apiKey = "d2c69b988ab715940fcd9349d5e8f8ab";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let apiKey = "1adc8btb0637f4ff3663a3o5a9930eea";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showCurrentTemperature);
 }
 
 function getCurrentPosition(position) {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
+
+let celsiusTemperature = null;
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayTemperatureFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayTemperatureCelsius);
+
 let button = document.querySelector("button");
 button.addEventListener("click", getCurrentPosition);
 

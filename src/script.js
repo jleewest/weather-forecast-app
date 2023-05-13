@@ -27,10 +27,12 @@ function showLocationTemperature(response) {
   let currentTemperature = document.querySelector("#current-temp");
   let location = document.querySelector("#location");
   let description = document.querySelector("#dest");
+  let descriptionResponse = response.data.condition.description;
   let windSpeed = Math.round(response.data.wind.speed);
   let selectWind = document.querySelector("#wind-speed");
+  let humidity = Math.round(response.data.temperature.humidity);
+  let selectHumidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
-  let descriptionResponse = response.data.condition.description;
 
   celsiusTemperature = response.data.temperature.current;
 
@@ -38,7 +40,8 @@ function showLocationTemperature(response) {
   location.innerHTML = response.data.city;
   description.innerHTML =
     descriptionResponse[0].toUpperCase() + descriptionResponse.substring(1);
-  selectWind.innerHTML = `${windSpeed}mph`;
+  selectWind.innerHTML = `Wind: ${windSpeed}mph`;
+  selectHumidity.innerHTML = `Humidity: ${humidity}%`;
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
@@ -56,6 +59,7 @@ function showCurrentTemperature(response) {
   let currentTemperature = document.querySelector("#current-temp");
   let location = document.querySelector("#location");
   let description = document.querySelector("#dest");
+  let descriptionResponse = response.data.condition.description;
   let windSpeed = Math.round(response.data.wind.speed);
   let selectWind = document.querySelector("#wind-speed");
   let humidity = Math.round(response.data.temperature.humidity);
@@ -65,8 +69,9 @@ function showCurrentTemperature(response) {
   celsiusTemperature = response.data.temperature.current;
 
   currentTemperature.innerHTML = Math.round(celsiusTemperature);
-  location.innerHTML = `In ${city}, it is currently`;
-  description.innerHTML = response.data.condition.description;
+  location.innerHTML = `${city}`;
+  description.innerHTML =
+    descriptionResponse[0].toUpperCase() + descriptionResponse.substring(1);
   selectWind.innerHTML = `Wind: ${windSpeed}mph`;
   selectHumidity.innerHTML = `Humidity: ${humidity}%`;
   iconElement.setAttribute(

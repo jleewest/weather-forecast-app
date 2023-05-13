@@ -23,6 +23,23 @@ function formatDate() {
 }
 formatDate();
 
+// function showCurrentTemperature(response) {
+//   let city = response.data.city;
+//   let currentTemperature = document.querySelector("#current-temp");
+//   let location = document.querySelector("#location");
+//   let description = document.querySelector("#dest");
+//   let windSpeed = Math.round(response.data.wind.speed);
+//   let selectWind = document.querySelector("#wind-speed");
+//   let iconElement = document.querySelector("#icon");
+//   // let descriptionResponse = response.data.condition.description;
+
+//   celsiusTemperature = response.data.temperature.current;
+
+//   currentTemperature.innerHTML = Math.round(celsiusTemperature);
+//   location.innerHTML = `In ${city}, it is currently`;
+//   description.innerHTML = `Hello`;
+//   // descriptionResponse[0].toUpperCase() + descriptionResponse.substring(1);
+
 function showLocationTemperature(response) {
   let currentTemperature = document.querySelector("#current-temp");
   let location = document.querySelector("#location");
@@ -30,12 +47,15 @@ function showLocationTemperature(response) {
   let windSpeed = Math.round(response.data.wind.speed);
   let selectWind = document.querySelector("#wind-speed");
   let iconElement = document.querySelector("#icon");
+  let descriptionResponse = response.data.condition.description;
 
   celsiusTemperature = response.data.temperature.current;
 
   currentTemperature.innerHTML = Math.round(celsiusTemperature);
   location.innerHTML = response.data.city;
-  description.innerHTML = response.data.condition.description;
+  description.innerHTML =
+    descriptionResponse[0].toUpperCase() + descriptionResponse.substring(1);
+  // response.data.condition.description;
   selectWind.innerHTML = `${windSpeed}mph`;
   iconElement.setAttribute(
     "src",

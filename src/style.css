@@ -57,10 +57,18 @@ a,
   right: 5px;
   top: -20px;
 }
-.current-details {
+.weather-forecast {
   font-size: 13px;
-  padding-top: 25px;
+  padding-top: 40px;
 }
+.weather-forecast-temperature-max {
+  font-size: 10px;
+}
+.weather-forecast-temperature-min {
+  font-size: 10px;
+  opacity: 0.5;
+}
+
 footer {
   font-size: 13px;
   padding: 40px;

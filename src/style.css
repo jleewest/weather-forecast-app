@@ -52,12 +52,14 @@ a,
 
 .current-description {
   font-size: 14px;
-  padding: 20px;
+  padding: 0px;
   position: relative;
-  top: -35px;
+  right: 5px;
+  top: -20px;
 }
 .current-details {
   font-size: 13px;
+  padding-top: 25px;
 }
 footer {
   font-size: 13px;

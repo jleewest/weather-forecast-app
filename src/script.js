@@ -23,23 +23,6 @@ function formatDate() {
 }
 formatDate();
 
-// function showCurrentTemperature(response) {
-//   let city = response.data.city;
-//   let currentTemperature = document.querySelector("#current-temp");
-//   let location = document.querySelector("#location");
-//   let description = document.querySelector("#dest");
-//   let windSpeed = Math.round(response.data.wind.speed);
-//   let selectWind = document.querySelector("#wind-speed");
-//   let iconElement = document.querySelector("#icon");
-//   // let descriptionResponse = response.data.condition.description;
-
-//   celsiusTemperature = response.data.temperature.current;
-
-//   currentTemperature.innerHTML = Math.round(celsiusTemperature);
-//   location.innerHTML = `In ${city}, it is currently`;
-//   description.innerHTML = `Hello`;
-//   // descriptionResponse[0].toUpperCase() + descriptionResponse.substring(1);
-
 function showLocationTemperature(response) {
   let currentTemperature = document.querySelector("#current-temp");
   let location = document.querySelector("#location");
@@ -55,7 +38,6 @@ function showLocationTemperature(response) {
   location.innerHTML = response.data.city;
   description.innerHTML =
     descriptionResponse[0].toUpperCase() + descriptionResponse.substring(1);
-  // response.data.condition.description;
   selectWind.innerHTML = `${windSpeed}mph`;
   iconElement.setAttribute(
     "src",
@@ -76,6 +58,8 @@ function showCurrentTemperature(response) {
   let description = document.querySelector("#dest");
   let windSpeed = Math.round(response.data.wind.speed);
   let selectWind = document.querySelector("#wind-speed");
+  let humidity = Math.round(response.data.temperature.humidity);
+  let selectHumidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
 
   celsiusTemperature = response.data.temperature.current;
@@ -83,7 +67,8 @@ function showCurrentTemperature(response) {
   currentTemperature.innerHTML = Math.round(celsiusTemperature);
   location.innerHTML = `In ${city}, it is currently`;
   description.innerHTML = response.data.condition.description;
-  selectWind.innerHTML = `${windSpeed}mph`;
+  selectWind.innerHTML = `Wind: ${windSpeed}mph`;
+  selectHumidity.innerHTML = `Humidity: ${humidity}%`;
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`

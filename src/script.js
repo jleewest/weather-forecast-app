@@ -23,6 +23,31 @@ function formatDate() {
 }
 formatDate();
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Sat", "Sun", "Mon", "Tues", "Weds", "Thurs"];
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+          <div class="weather-forecast-date">${day}</div>
+          <img
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+            alt=""
+            width="42"
+            />
+          <div class="weather-forecast-temperature">
+            <span class="weather-forecast-temperature-max">26°</span>
+            <span class="weather-forecast-temperature-min">18°</span>
+          </div>
+       </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showLocationTemperature(response) {
   let currentTemperature = document.querySelector("#current-temp");
   let location = document.querySelector("#location");
@@ -46,12 +71,6 @@ function showLocationTemperature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  // document.querySelector("#high-temp").innerHTML = Math.round(
-  //   response.data.main.temp_max
-  // );
-  // document.querySelector("#low-temp").innerHTML = Math.round(
-  //   response.data.main.temp_min
-  // );
 }
 
 function showCurrentTemperature(response) {
@@ -134,3 +153,4 @@ let button = document.querySelector("button");
 button.addEventListener("click", getCurrentPosition);
 
 searchCity("San Francisco");
+displayForecast();

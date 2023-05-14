@@ -41,14 +41,17 @@ h2 {
 a,
 .temp-unit {
   font-size: 20px;
+  position: relative;
   text-decoration: none;
+  top: -44px;
+  right: 20px;
 }
 
-.temp-unit .active {
+/* .temp-unit .active {
   color: #474747;
   cursor: default;
   font-size: 26px;
-}
+} */
 
 .current-description {
   font-size: 14px;
@@ -59,7 +62,7 @@ a,
 }
 .weather-forecast {
   font-size: 13px;
-  padding-top: 40px;
+  padding-top: 28px;
   text-align: center;
 }
 .weather-forecast-temperature-max {

@@ -1,7 +1,7 @@
 .weather-app {
   border: 1px solid #dadde1;
   padding: 15px;
-  margin: 40px auto;
+  margin: 40px auto -10px;
   border-radius: 10px;
   max-width: 400px;
 }
@@ -38,20 +38,12 @@ h2 {
   text-align: center;
 }
 
-a,
 .temp-unit {
   font-size: 20px;
   position: relative;
-  text-decoration: none;
   top: -44px;
   right: 20px;
 }
-
-/* .temp-unit .active {
-  color: #474747;
-  cursor: default;
-  font-size: 26px;
-} */
 
 .current-description {
   font-size: 14px;
@@ -75,6 +67,10 @@ a,
 
 footer {
   font-size: 13px;
-  padding: 40px;
+  padding: 20px;
   text-align: center;
+}
+
+.code-link {
+  text-decoration: none;
 }

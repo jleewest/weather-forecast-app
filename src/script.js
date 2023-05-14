@@ -47,6 +47,11 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+function getForecast(coordinates) {
+  let apiKey = "1adc8btb0637f4ff3663a3o5a9930eea";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function showCurrentTemperature(response) {
   let city = response.data.city;
@@ -72,6 +77,7 @@ function showCurrentTemperature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  getForecast(response.data.coordinates);
 }
 
 function searchCity(city) {
@@ -128,4 +134,3 @@ let button = document.querySelector("button");
 button.addEventListener("click", getCurrentPosition);
 
 searchCity("San Francisco");
-displayForecast();

@@ -28,7 +28,7 @@ function formatDate() {
     minute = `0${minute}`;
   }
   let h2 = document.querySelector("h2");
-  h2.innerHTML = `Data Received: ${day} ${hour}:${minute} ${meridiem}`;
+  h2.innerHTML = `Data Received: ${day} at ${hour}:${minute} ${meridiem}`;
 }
 formatDate();
 

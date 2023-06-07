@@ -11,15 +11,24 @@ function formatDate() {
   ];
   let day = days[now.getDay()];
   let hour = now.getHours();
+  let minute = now.getMinutes();
+  let meridiem = "AM";
+
   if (hour < 10) {
     hour = `0${hour}`;
   }
-  let minute = now.getMinutes();
+  if (hour > 12) {
+    hour = hour - 12;
+  }
+  {
+    meridiem = "PM";
+  }
+
   if (minute < 10) {
     minute = `0${minute}`;
   }
   let h2 = document.querySelector("h2");
-  h2.innerHTML = `${day} ${hour}:${minute}`;
+  h2.innerHTML = `Data Received: ${day} ${hour}:${minute} ${meridiem}`;
 }
 formatDate();
 
